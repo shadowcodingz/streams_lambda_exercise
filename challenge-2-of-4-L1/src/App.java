@@ -1,17 +1,20 @@
 import java.util.List;
+import java.lang.reflect.Member;
 import java.util.Arrays;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import com.lxisoftech.members;
+import com.lxisoftech.Members;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public class App {
 
     public static void main(String[] args) {
-        List<members> memberList = members.getMembers();
+        List<Members> memberList = Members.getMembers();
 
         System.out.println("--------------------------------------------------");
         System.out.println("              STREAM API EXERCISES");
@@ -24,23 +27,50 @@ public class App {
         System.out.println("1. Find all members who reside in 'New York'.");
         // Hint: You need to select only the members whose city matches 'New York'.
         // Write your code here:
-
+          
         System.out.println();
+        List<Members> names =  memberList.stream()
+             .filter(n -> n.getCity().equals( "New York"))
+             .collect(Collectors.toList());
+             
+        
+         System.out.println( names);
+        
+    
+
 
         // Question 2
         System.out.println("2. Count the number of active members.");
         // Hint: First select only the active members, then determine the total count.
         // Write your code here:
+ 
+          
+        long activMembers =  memberList.stream()
+                                                .filter(n -> n.isActive() )
+                                               // .collect(Collectors.toList())
+                                                .count();
+   
 
-        System.out.println();
+             System.out.println(" ******** Count :  " + activMembers);
 
-        // Question 3
+             System.out.println("****************** Active Members : " + activMembers);
+
+
+ 
+        // Question ***********************  {3}
         System.out.println("3. Get a list of names of all premium members.");
         // Hint: Select premium members first, then transform the result to get only
         // their names.
-        // Write your code here:
+        // Write your code here:  
 
-        System.out.println();
+        
+        List<String>  priMembers =   memberList.stream()
+                                                 .filter(n -> n.isPremiumMember() == true )
+                                                 .map(n -> n.getName())
+                                                 .collect(Collectors.toList());
+                                                 
+        System.out.println("Is Prime Member  : " +  priMembers);
+
 
         // Question 4
         System.out.println("4. Check if there is any member older than 50.");
@@ -48,7 +78,18 @@ public class App {
         // condition.
         // Write your code here:
 
-        System.out.println();
+        List<String> memberAge =  memberList.stream()
+                    .filter(n -> n.getAge() > 50)
+                    .map(n -> n.getName())
+                    .collect((Collectors.toList()));
+
+        
+
+
+        System.out.println(" *************** 50 Older Members  : " +  memberAge);
+
+
+
 
         // Question 5
         System.out.println("5. Create a list of Member IDs for members with car parking permission.");
@@ -56,9 +97,16 @@ public class App {
         // into a list.
         // Write your code here:
 
-        System.out.println();
 
-        // LEVEL 2: INTERMEDIATE
+       List<Integer> ids = memberList.stream()
+                                     .filter(n -> n.isDoesMemberHaveCarParkingPermission()== true)
+                                     .map(n -> n.getMemberId())         
+                                     .collect(Collectors.toList());
+       
+
+        System.out.println(" with parking access, then extract their specific IDs : " + ids);
+ 
+        // LEVEL 2: INTERMEDIATE 
         printHeader("Level 2: Intermediate");
 
         // Question 6
@@ -66,6 +114,9 @@ public class App {
         // Hint: Compare members based on their age to find the one with the maximum
         // value.
         // Write your code here:
+        
+       
+
 
         System.out.println();
 
@@ -194,4 +245,7 @@ public class App {
         System.out.println(title);
         System.out.println("=========================================");
     }
+
+
+
 }

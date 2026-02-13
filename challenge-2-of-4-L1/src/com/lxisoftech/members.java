@@ -3,7 +3,7 @@ package com.lxisoftech;
 import java.util.Arrays;
 import java.util.List;
 
-public class members {
+public class Members {
 
     private int memberId;
     private String name;
@@ -15,7 +15,7 @@ public class members {
     private String city;
     private boolean isActive;
 
-    public members(String name, int age, int memberId, String city, boolean isActive, String adressAndFlatno,
+    public Members(String name, int age, int memberId, String city, boolean isActive, String adressAndFlatno,
             boolean isPremiumMember, boolean doesMemberHaveCarParkingPermission,
             List<String> VehiclesOwnedRegisterationPlate) {
         this.name = name;
@@ -116,40 +116,45 @@ public class members {
                 '}';
     }
 
-    public static List<members> getMembers() {
+    
+
+    public static List<Members> getMembers(){
+
         return Arrays.asList(
-                new members("Alice Smith", 25, 101, "New York", true, "123 Main St, Apt 4B", true, true,
+                new Members("Alice Smith", 25, 101, "New York", true, "123 Main St, Apt 4B", true, true,
                         Arrays.asList("NY-123", "NY-456")),
-                new members("Bob Johnson", 30, 102, "Los Angeles", false, "456 Sunset Blvd, Apt 101", false, false,
+                new Members("Bob Johnson", 30, 102, "Los Angeles", false, "456 Sunset Blvd, Apt 101", false, false,
                         Arrays.asList()),
-                new members("Charlie Brown", 22, 103, "Chicago", true, "789 Lake Dr, Apt 2C", true, false, null),
-                new members("David Wilson", 35, 104, "Houston", true, "321 Oak Ln, Apt 5D", false, true,
+                new Members("Charlie Brown", 22, 103, "Chicago", true, "789 Lake Dr, Apt 2C", true, false, null),
+                new Members("David Wilson", 35, 104, "Houston", true, "321 Oak Ln, Apt 5D", false, true,
                         Arrays.asList("TX-789")),
-                new members("Eva Davis", 28, 105, "Phoenix", false, "654 Desert Rd, Apt 8A", true, true,
+                new Members("Eva Davis", 28, 105, "Phoenix", false, "654 Desert Rd, Apt 8A", true, true,
                         Arrays.asList("AZ-101")),
-                new members("Frank Miller", 40, 106, "New York", true, "987 Broadway, Apt 12", true, true,
+                new Members("Frank Miller", 40, 106, "New York", true, "987 Broadway, Apt 12", true, true,
                         Arrays.asList("NY-777", "NY-888")),
-                new members("Grace Taylor", 24, 107, "Los Angeles", false, "159 Hollywood Blvd", false, false,
+                new Members("Grace Taylor", 24, 107, "Los Angeles", false, "159 Hollywood Blvd", false, false,
                         Arrays.asList()),
-                new members("Henry Anderson", 32, 108, "Chicago", true, "753 Windy St, Apt 3B", true, true,
+                new Members("Henry Anderson", 32, 108, "Chicago", true, "753 Windy St, Apt 3B", true, true,
                         Arrays.asList("IL-555")),
-                new members("Ivy Thomas", 29, 109, "Houston", true, "951 Space Way", false, false, Arrays.asList()),
-                new members("Jack White", 27, 110, "Phoenix", false, "357 Sun Ave", false, true,
+                new Members("Ivy Thomas", 29, 109, "Houston", true, "951 Space Way", false, false, Arrays.asList()),
+                new Members("Jack White", 27, 110, "Phoenix", false, "357 Sun Ave", false, true,
                         Arrays.asList("AZ-202")),
-                new members("Katherine Lewis", 33, 111, "New York", true, "246 Central Park", true, false, null),
-                new members("Liam Martinez", 26, 112, "Los Angeles", false, "369 Beach Rd", false, true,
+                new Members("Katherine Lewis", 33, 111, "New York", true, "246 Central Park", true, false, null),
+                new Members("Liam Martinez", 26, 112, "Los Angeles", false, "369 Beach Rd", false, true,
                         Arrays.asList("CA-999")),
-                new members("Mia Clark", 31, 113, "Chicago", true, "147 River St", true, true, Arrays.asList("IL-111")),
-                new members("Noah Rodriguez", 23, 114, "Houston", true, "258 Star Ln", false, false, Arrays.asList()),
-                new members("Olivia Walker", 38, 115, "Phoenix", false, "369 Sand Blvd", true, true,
+                new Members("Mia Clark", 31, 113, "Chicago", true, "147 River St", true, true, Arrays.asList("IL-111")),
+                new Members("Noah Rodriguez", 23, 114, "Houston", true, "258 Star Ln", false, false, Arrays.asList()),
+                new Members("Olivia Walker", 38, 115, "Phoenix", false, "369 Sand Blvd", true, true,
                         Arrays.asList("AZ-303", "AZ-404")),
-                new members("Peter Hall", 21, 116, "New York", true, "159 East Side", true, false, Arrays.asList()),
-                new members("Quinn Young", 34, 117, "Los Angeles", false, "753 West Side", false, true,
+                new Members("Peter Hall", 21, 116, "New York", true, "159 East Side", true, false, Arrays.asList()),
+                new Members("Quinn Young", 34, 117, "Los Angeles", false, "753 West Side", false, true,
                         Arrays.asList("CA-222")),
-                new members("Ryan King", 52, 118, "Chicago", true, "951 North Side", true, true,
+                new Members("Ryan King", 52, 118, "Chicago", true, "951 North Side", true, true,
                         Arrays.asList("IL-333")),
-                new members("Sophia Wright", 36, 119, "Houston", true, "357 South Side", false, false, null),
-                new members("Thomas Scott", 45, 120, "Phoenix", false, "852 Valley Rd", true, true,
+                new Members("Sophia Wright", 36, 119, "Houston", true, "357 South Side", false, false, null),
+                new Members("Thomas Scott", 45, 120, "Phoenix", false, "852 Valley Rd", true, true,
                         Arrays.asList("AZ-505")));
     }
+
+
 }
