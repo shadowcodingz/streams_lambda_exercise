@@ -1,17 +1,20 @@
 import java.util.List;
+import java.lang.reflect.Member;
 import java.util.Arrays;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import com.lxisoftech.members;
+import com.lxisoftech.Members;
 
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 public class App {
 
     public static void main(String[] args) {
-        List<members> memberList = members.getMembers();
+        List<Members> memberList = Members.getMembers();
 
         System.out.println("--------------------------------------------------");
         System.out.println("              STREAM API EXERCISES");
@@ -21,18 +24,25 @@ public class App {
         printHeader("Level 1: Beginner");
 
         // Question 1
-        System.out.println("1. Find all members who reside in 'New York'.");
+        System.out.println("1. Find all members who reside in -.");
         // Hint: You need to select only the members whose city matches 'New York'.
         // Write your code here:
 
-        System.out.println();
+        // List<Members> list = memberList.stream()
+        // .filter(n -> n.getCity().equals("New York"))
+        // .collect(Collectors.toList());
+
+        // System.out.println(list);
 
         // Question 2
         System.out.println("2. Count the number of active members.");
         // Hint: First select only the active members, then determine the total count.
         // Write your code here:
-
-        System.out.println();
+         
+         List<Members> count = memberList.stream()
+         .filter(c -> c.isActive())
+         .collect(Collectors.toList());
+         System.out.println(count);
 
         // Question 3
         System.out.println("3. Get a list of names of all premium members.");
@@ -40,13 +50,23 @@ public class App {
         // their names.
         // Write your code here:
 
-        System.out.println();
+        List<String> premium = memberList.stream()
+        .filter(p -> p.isPremiumMember() == true )
+        .map(p -> p.getName())
+        .collect(Collectors.toList());
+
+        System.out.println(premium);
 
         // Question 4
         System.out.println("4. Check if there is any member older than 50.");
         // Hint: You need to check if at least one member in the list satisfies the age
         // condition.
         // Write your code here:
+
+        boolean hasSeniorMember = memberList.stream()
+        .anyMatch(member -> member.getAge() > 50);
+
+System.out.println("Any member older than 50: " + hasSeniorMember);
 
         System.out.println();
 
@@ -56,7 +76,15 @@ public class App {
         // into a list.
         // Write your code here:
 
-        System.out.println();
+       
+List<Integer> memberIdsWithParking = memberList.stream()
+        .filter(m -> m.isDoesMemberHaveCarParkingPermission())
+        .map(Members::getMemberId)
+        .toList();
+
+System.out.println(memberIdsWithParking);
+
+        //System.out.println();
 
         // LEVEL 2: INTERMEDIATE
         printHeader("Level 2: Intermediate");
@@ -67,6 +95,13 @@ public class App {
         // value.
         // Write your code here:
 
+        
+Members oldestMember = memberList.stream()
+        .max((m1, m2) -> Integer.compare(m1.getAge(), m2.getAge()))
+        .orElse(null);
+
+System.out.println(oldestMember);
+
         System.out.println();
 
         // Question 7
@@ -74,6 +109,11 @@ public class App {
         // Hint: Arrange the members from youngest to oldest and stick to the top 5
         // results.
         // Write your code here:
+
+        memberList.stream()
+        .sorted(Comparator.comparingInt(Members::getAge))
+        .limit(5)
+        .forEach(System.out::println);
 
         System.out.println();
 
@@ -83,16 +123,24 @@ public class App {
         // their names.
         // Write your code here:
 
-        System.out.println();
+        
+List<String> memberNames = Members.getMembers().stream()
+        .filter(m -> m.getVehiclesOwnedRegisterationPlate() != null
+                && m.getVehiclesOwnedRegisterationPlate().size() > 1)
+        .map(Members::getName)
+        .toList();
+
+System.out.println(memberNames);
+
+        //System.out.println();
 
         // Question 9
         System.out.println("9. Find all unique cities where members reside.");
         // Hint: Extract the city from each member and ensure there are no duplicate
         // city names in the final list.
         // Write your code here:
-
-        System.out.println();
-
+      
+        
         // Question 10
         System.out.println("10. Check if all members from 'Houston' are active.");
         // Hint: First filter for members from Houston, then verify if every single one
@@ -168,8 +216,12 @@ public class App {
         // Hint: Group premium members by city, count them, and then find the city entry
         // with the maximum count.
         // Write your code here:
+        //   List<String> highMem = memberList.stream()
+        //                       .filter( w -> w.isPremiumMember()== true )
+        //                       .map(i-> i.getName())
+        //                       .collect(Collectors.toList());
 
-        System.out.println();
+        // System.out.println(highMem);
 
         // Question 19
         System.out.println("19. Create a single comma-separated string of all member names sorted alphabetically.");
