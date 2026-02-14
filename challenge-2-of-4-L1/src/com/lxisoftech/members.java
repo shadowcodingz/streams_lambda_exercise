@@ -153,7 +153,7 @@ public class Members {
                         Arrays.asList("IL-333")),
                 new Members("Sophia Wright", 36, 119, "Houston", true, "357 South Side", false, false, null),
                 new Members("Thomas Scott", 45, 120, "Phoenix", false, "852 Valley Rd", true, true,
-                        Arrays.asList("AZ-505")));
+                        Arrays.asList("AZ-505"))); 
     }
 
 

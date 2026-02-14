@@ -55,6 +55,7 @@ public class App {
 
              System.out.println("****************** Active Members : " + activMembers);
 
+        System.out.println("***************************");  
 
  
         // Question ***********************  {3}
@@ -87,8 +88,8 @@ public class App {
 
 
         System.out.println(" *************** 50 Older Members  : " +  memberAge);
-
-
+         
+        System.out.println("***************************");  
 
 
         // Question 5
@@ -114,43 +115,72 @@ public class App {
         // Hint: Compare members based on their age to find the one with the maximum
         // value.
         // Write your code here:
-        
+         
+     Optional<Members> age =  memberList.stream()
+                                    .max((a,b) -> a.getAge() - b.getAge());
+                                   
        
 
 
-        System.out.println();
+        System.out.println( "Question 6  Answer : " + age);
+        System.out.println("***************************");  
 
         // Question 7
         System.out.println("7. Sort members by age in ascending order (print first 5).");
         // Hint: Arrange the members from youngest to oldest and stick to the top 5
         // results.
         // Write your code here:
+    
+        List<Members> agMembers =  memberList.stream()
+                   .sorted((a,b) -> a.getAge() - b.getAge())
+                   .limit(5)
+                   .collect(Collectors.toList());
 
-        System.out.println();
-
+        System.out.println( agMembers);
+System.out.println("***************************");  
         // Question 8
         System.out.println("8. Get the names of members who own more than one vehicle.");
         // Hint: Select members whose vehicle list has a size greater than 1, then get
         // their names.
         // Write your code here:
+        
+        List<String> namesVehicleOwned =  memberList.stream()
+                                                    .filter(n -> n.getVehiclesOwnedRegisterationPlate() != null &&
+                                                     n.getVehiclesOwnedRegisterationPlate().size() > 1)
+                                                   .map(n -> n.getName())
+                                                    .collect(Collectors.toList());
 
-        System.out.println();
+        System.out.println(namesVehicleOwned);
 
+        System.out.println("***************************");  
         // Question 9
         System.out.println("9. Find all unique cities where members reside.");
         // Hint: Extract the city from each member and ensure there are no duplicate
         // city names in the final list.
         // Write your code here:
 
-        System.out.println();
+       List<String> membersCity =   memberList.stream()
+                  .map(n-> n.getCity())
+                  .distinct()
+                  .collect(Collectors.toList());
+
+
+        System.out.println(membersCity);
 
         // Question 10
         System.out.println("10. Check if all members from 'Houston' are active.");
         // Hint: First filter for members from Houston, then verify if every single one
         // of them is active.
         // Write your code here:
+       
+       boolean   city =   memberList.stream()
+                                 .filter(n -> n.getCity().equals("Houston"))
+                                 .allMatch(n -> n.isActive());
+                                 
+                    
+        System.out.println(city);
 
-        System.out.println();
+        System.out.println("***************************");
 
         // LEVEL 3: ADVANCED
         printHeader("Level 3: Advanced");
