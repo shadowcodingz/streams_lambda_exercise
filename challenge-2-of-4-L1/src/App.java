@@ -55,7 +55,7 @@ public class App {
 
              System.out.println("****************** Active Members : " + activMembers);
 
-        System.out.println("***************************");  
+             System.out.println("***************************");  
 
  
         // Question ***********************  {3}
@@ -174,8 +174,8 @@ System.out.println("***************************");
         // Write your code here:
        
        boolean   city =   memberList.stream()
-                                 .filter(n -> n.getCity().equals("Houston"))
-                                 .allMatch(n -> n.isActive());
+                                    .filter(n -> n.getCity().equals("Houston"))
+                                    .allMatch(n -> n.isActive());
                                  
                     
         System.out.println(city);
@@ -190,23 +190,47 @@ System.out.println("***************************");
         // Hint: Organize the members into a map where the key is the city and the value
         // is the list of members in that city.
         // Write your code here:
+         
+       Map<String,List<Members>> cityAndMembers =  memberList.stream() 
+                                                             .collect(Collectors.groupingBy(n -> n.getCity()));
+                                                              
 
-        System.out.println();
 
-        // Question 12
+        System.out.println(cityAndMembers);
+
+        // Question 12+
+
         System.out.println("12. Find the average age of active members.");
         // Hint: Select active members, extract their ages as numbers, and calculate the
         // mean value.
         // Write your code here:
+        
 
-        System.out.println();
+
+                 long memberAgee = memberList.stream()
+                                              .filter( n -> n.isActive())
+                                              .collect(Collectors.summingInt(Members :: getAge));
+                                              
+                 long  acLists = memberList.stream()
+                                                    .filter(n -> n.isActive())
+                                                    .count(); 
+
+
+        System.out.println((double) memberAgee / acLists );
 
         // Question 13
         System.out.println("13. Get the member with the maximum Member ID.");
         // Hint: Compare members based on their ID property to find the highest one.
         // Write your code here:
 
-        System.out.println();
+    Optional<Members>  largestId =  memberList.stream()
+
+    
+                                  .max(Comparator.comparing(n -> n.getMemberId()));
+                                            
+
+        
+        System.out.println(largestId );
 
         // Question 14
         System.out.println("14. Create a map of Member ID to Name for all premium members.");
@@ -214,7 +238,16 @@ System.out.println("***************************");
         // the key and Name is the value.
         // Write your code here:
 
+        Map<Integer,String> nameKey = memberList.stream()
+                                                .filter( n -> n.isPremiumMember())
+                                                .map(n -> n.getMemberId())
+                                                .collect(Collectors.toMap(null, null));
+
+
         System.out.println();
+
+
+
 
         // Question 15
         System.out.println("15. Find names of members who live in 'Chicago' OR 'Phoenix' and are active.");
