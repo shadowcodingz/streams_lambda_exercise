@@ -240,11 +240,13 @@ System.out.println("***************************");
 
         Map<Integer,String> nameKey = memberList.stream()
                                                 .filter( n -> n.isPremiumMember())
-                                                .map(n -> n.getMemberId())
-                                                .collect(Collectors.toMap(null, null));
+                                                
+                                                .collect(Collectors.toMap(n -> n.getMemberId(),n -> n.getName()));
 
 
-        System.out.println();
+
+
+        System.out.println(nameKey.get(101));
 
 
 
@@ -255,7 +257,15 @@ System.out.println("***************************");
         // Phoenix) AND (Status is Active).
         // Write your code here:
 
-        System.out.println();
+
+      List<String> membersCitysss  = memberList.stream()
+
+                   .filter(n -> n.getCity().equals("Chicago") ||  n.getCity().equals( "Phoenix"))
+                   .filter(n -> n.isActive())
+                   .map(n -> n.getName())
+                   .collect(Collectors.toList());  
+
+        System.out.println(membersCitysss);
 
         // LEVEL 4: PROFESSIONAL
         printHeader("Level 4: Professional");
